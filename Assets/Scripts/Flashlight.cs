@@ -7,12 +7,10 @@ public class Flashlight : MonoBehaviour
 {
     private GameObject Light;
 
-    public bool ToggleLight;
-
     void Start()
     {
-        Light = GameObject.FindWithTag("Flashlight");
-        Light.SetActive(false);
+        Light = GameObject.Find("Spot Light");
+        Light.SetActive(true);
     }
 
     void Update()
