@@ -245,7 +245,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1111219145}
   MaxDistance: 15
 --- !u!195 &258664909
 NavMeshAgent:
@@ -339,7 +338,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1111219145}
   MaxDistance: 15
 --- !u!54 &280213548
 Rigidbody:
@@ -636,8 +634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9049cebb4ad254a9dd46b3927fb158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 453742778}
-  Player: {fileID: 1111219149}
   RotationSpeed: 1
 --- !u!1 &969700930
 GameObject:
@@ -969,7 +965,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1111219145}
   MaxDistance: 15
 --- !u!54 &1215966983
 Rigidbody:
@@ -1061,7 +1056,7 @@ GameObject:
   - component: {fileID: 1526761752}
   - component: {fileID: 1526761755}
   m_Layer: 0
-  m_Name: Flashlight
+  m_Name: Flash Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1154,8 +1149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55736e785bda1c14e911ac167a5b6bce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Light: {fileID: 587247008}
-  ToggleLight: 0
 --- !u!1 &1533073719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1412,7 +1405,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1111219145}
   MaxDistance: 15
 --- !u!54 &2045849727
 Rigidbody:
