@@ -5,16 +5,15 @@ using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-    private Rigidbody rb;
-
     public LayerMask GroundLayers;
     public float JumpForce = 5f;
     public float DistanceToGround = 1f;
     public float MoveSpeed = 10f;
+    private Rigidbody rBody; 
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rBody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -28,7 +27,7 @@ public class PlayerCharacterController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+            rBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
         }
     }
 

@@ -5,26 +5,25 @@ using UnityEngine.AI;
 
 public class FollowPlayer : MonoBehaviour
 {
-    private GameObject Player;
-    private NavMeshAgent Follower;
-       
     public float MaxDistance = 15f;
+    private GameObject player;
+    private NavMeshAgent follower;      
 
     void Start()
     {
-        Player = GameObject.FindWithTag("Player");
-        Follower = GetComponent<NavMeshAgent>();
+        player = GameObject.FindWithTag("Player");
+        follower = GetComponent<NavMeshAgent>();
     }
 
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, Player.transform.position);
+        float distance = Vector3.Distance(transform.position, player.transform.position);
 
         if(distance < MaxDistance)
         {
-            Vector3 directionToPlayer = transform.position - Player.transform.position;
+            Vector3 directionToPlayer = transform.position - player.transform.position;
             Vector3 newPosition = transform.position - directionToPlayer;
-            Follower.SetDestination(newPosition);
+            follower.SetDestination(newPosition);
         }
     }
 }
