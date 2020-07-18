@@ -877,7 +877,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78850798af18c974d8e6e3be4adc37dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 3
+  rb: {fileID: 1111219151}
+  GroundLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  JumpForce: 5
+  DistanceToGround: 1
+  MoveSpeed: 10
 --- !u!54 &1111219151
 Rigidbody:
   m_ObjectHideFlags: 0

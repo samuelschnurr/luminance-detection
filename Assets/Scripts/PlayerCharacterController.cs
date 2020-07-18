@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-    public float MoveSpeed;
+    private Rigidbody rb;
+
+    public LayerMask GroundLayers;
+    public float JumpForce = 5f;
+    public float DistanceToGround = 1f;
+    public float MoveSpeed = 10f;
 
     void Start()
     {
-        MoveSpeed = 10;
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -19,7 +24,17 @@ public class PlayerCharacterController : MonoBehaviour
         float moveZ = Input.GetAxis("Vertical");
 
         Vector3 playerMovement = new Vector3(moveX, moveY, moveZ).normalized * Time.deltaTime * MoveSpeed;
-
         transform.Translate(playerMovement, Space.Self);
+
+        if (Input.GetButtonDown("Jump") && IsGrounded())
+        {
+            rb.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        Ray rayToGround = new Ray(transform.position, Vector3.down);
+        return Physics.Raycast(rayToGround, DistanceToGround, GroundLayers);
     }
 }
