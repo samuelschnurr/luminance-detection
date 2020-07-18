@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour
 {
+    private Transform Target, Player;
     private const float Y_ANGLE_MIN = -35f;
     private const float Y_ANGLE_MAX = 60f;
     private float mouseX, mouseY;
-    public float RotationSpeed = 1;
-    public Transform Target, Player;   
+        
+    public float RotationSpeed = 1f;
 
     void Start()
     {
+        Player = GameObject.FindWithTag("Player").transform;
+        Target = GameObject.FindWithTag("Target").transform;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }

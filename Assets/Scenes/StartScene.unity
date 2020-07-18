@@ -428,7 +428,7 @@ GameObject:
   - component: {fileID: 453742778}
   m_Layer: 0
   m_Name: Target
-  m_TagString: Untagged
+  m_TagString: Target
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -636,9 +636,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca9049cebb4ad254a9dd46b3927fb158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RotationSpeed: 1
   Target: {fileID: 453742778}
   Player: {fileID: 1111219149}
+  RotationSpeed: 1
 --- !u!1 &969700930
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +782,7 @@ GameObject:
   - component: {fileID: 1111219151}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -877,7 +877,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78850798af18c974d8e6e3be4adc37dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 1111219151}
   GroundLayers:
     serializedVersion: 2
     m_Bits: 1

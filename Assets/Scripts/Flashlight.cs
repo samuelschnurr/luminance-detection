@@ -5,11 +5,13 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    public GameObject Light;
+    private GameObject Light;
+
     public bool ToggleLight;
 
     void Start()
     {
+        Light = GameObject.FindWithTag("Flashlight");
         Light.SetActive(false);
     }
 
@@ -17,14 +19,7 @@ public class Flashlight : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            ToggleLight = true;
-        }
-
-        // Toggle can also be used from the insepctor view
-        if (ToggleLight)
-        {
             Light.SetActive(!Light.activeSelf);
-            ToggleLight = false;
         }
     }
 }

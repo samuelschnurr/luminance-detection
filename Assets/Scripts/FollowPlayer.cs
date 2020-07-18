@@ -5,12 +5,14 @@ using UnityEngine.AI;
 
 public class FollowPlayer : MonoBehaviour
 {
+    private GameObject Player;
     private NavMeshAgent Follower;
-    public GameObject Player;
+       
     public float MaxDistance = 15f;
 
     void Start()
     {
+        Player = GameObject.FindWithTag("Player");
         Follower = GetComponent<NavMeshAgent>();
     }
 
