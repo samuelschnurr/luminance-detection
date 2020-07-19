@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCameraController : MonoBehaviour
+public class PlayerCamera : MonoBehaviour
 {
     public float RotationSpeed = 100f;
     private const float Y_ANGLE_MIN = -35f;

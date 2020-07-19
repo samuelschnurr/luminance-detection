@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCharacterController : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
     public float Speed = 10f;
     public float Gravity = -9.81f; // Default gravity of unity
