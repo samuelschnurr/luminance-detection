@@ -16,6 +16,7 @@ public class PlayerCameraController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         player = GameObject.FindWithTag("Player");
     }
+
     void Update()
     {
         mouseX += Input.GetAxis("Mouse X") * RotationSpeed;
@@ -24,9 +25,5 @@ public class PlayerCameraController : MonoBehaviour
         
         transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
         player.transform.rotation = Quaternion.Euler(0, mouseX, 0);
-        }
-
-
-        
     }
 }
