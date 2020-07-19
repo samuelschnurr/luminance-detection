@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerCharacterController : MonoBehaviour
 {
     public LayerMask GroundLayers;
-    public float JumpForce = 5f;
+    public float JumpForce = 500f;
     public float DistanceToGround = 1f;
     public float MoveSpeed = 10f;
     private Rigidbody rBody; 
