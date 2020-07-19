@@ -5,53 +5,54 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Transform GroundCheck;
+    public LayerMask GroundMask;
+    public float GroundDistance = 1f; // Equals the height of the player
     public float Speed = 10f;
     public float Gravity = -9.81f; // Default gravity of unity
-    public float JumpHeight = 5f;
+    public float JumpHeight = 3f;
     private CharacterController controller;
-    //private PlayerInput input;
     private Vector3 velocity;
-
-    public Transform groundCheck;
-    public float groundDistance = 1f; // Equals the height of the player
-    public LayerMask groundMask;
+    private float moveX;
+    private float moveZ;
+    private bool jump;
+    private bool isGrounded;
 
     // Initialize once on start
     void Start()
     {
         controller = GetComponent<CharacterController>();
-        //input = GetComponent<PlayerInput>();
     }
 
+    // Get Player Input for each frame
     void Update()
     {
-        if (IsGrounded() && velocity.y < 0)
+        moveX = Input.GetAxis("Horizontal");
+        moveZ = Input.GetAxis("Vertical");
+        jump = Input.GetButtonDown("Jump");
+        isGrounded = IsGrounded();
+
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
-        float moveX = Input.GetAxis("Horizontal");
-        float moveZ = Input.GetAxis("Vertical");
-
-        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+        Vector3 move = transform.right * moveX +
+                       transform.forward * moveZ;
         controller.Move(move * Speed * Time.deltaTime);
 
-        print("Grounded: " + IsGrounded());
-
-        if (Input.GetButtonDown("Jump") && IsGrounded())
+        if (jump && isGrounded)
         {
-
             velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
         }
+
         velocity.y += Gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
-
-
     }
 
     private bool IsGrounded()
     {
         Ray rayToGround = new Ray(transform.position, Vector3.down);
-        return Physics.Raycast(rayToGround, groundDistance, groundMask);
+        return Physics.Raycast(rayToGround, GroundDistance, GroundMask);
     }
 }
