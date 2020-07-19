@@ -4,76 +4,67 @@ using UnityEngine;
 
 public class Jetpack : MonoBehaviour
 {
-    public float speed = 3;
-    public CharacterController CharCont;
-    public Vector3 currentVector = Vector3.up;
+    private const float FORCE_CONSUMPTION = 10f; // Using jetpack fuel costs factor 10 to the time
+    private const float FORCE_FILLUP = 3f; // Reloading jetpack by factor 2 to the time
 
+    public CharacterController CharController;
+    public float Speed = 3f;
+    public float MaxForce = 15f; // Force you can use
+    public float ForceMultiplier = 0.25f; // Multiplier for the movement force
+    private Vector3 currentVector = Vector3.up;
+    public float CurrentForce = 0f; // Force currently in use
+    private bool CanUseJetpack = true;
 
-    public float CurrentForce = 0;
-    public float MaxForce = 5000;
-
-
-
-    void Start()
-    {
-
-    }
-
+    // JetPack is on hold jump button, so FixedUpdate() which may not run every single frame is enough
+    // FixedUpdate runs for each frame when physics calculations happen
     void FixedUpdate()
     {
-        // JetPack is on hold space button, so FixedUpdate() which may not run every single frame is enough.
-        if (Input.GetButton("Jump") && MaxForce > 0)
-        {
-            MaxForce -= Time.deltaTime;
+        CheckOverheat();
 
-            if (CurrentForce < 1)
-            {
-                CurrentForce += Time.deltaTime * 10;
-            }
-            else
-            {
-                CurrentForce = 1;
-            }
+        if (Input.GetKey(KeyCode.Space) && CanUseJetpack)
+        {
+            UseForce();
+            UseJetPack();
         }
-
-        // No fuel, but still in the air.
-        if (MaxForce < 0 && CurrentForce > 0)
+        else
         {
-            CurrentForce -= Time.deltaTime;
+            ReloadForce();
         }
+    }
+    private void CheckOverheat()
+    {
+        bool isOverheated = CurrentForce >= MaxForce;
 
-        if (!Input.GetButton("Jump"))
+        if (isOverheated)
         {
-            if (CurrentForce > 0)
-            {
-                CurrentForce -= Time.deltaTime;
-            }
-            else
-            {
-                CurrentForce = 0;
-            }
-            if (MaxForce < 5000)
-            {
-                MaxForce += Time.deltaTime;
-            }
-            else
-            {
-                MaxForce = 5000;
-            }
-
-            if (CurrentForce > 0)
-            {
-                useJetPack();
-            }
+            CanUseJetpack = false;
+        }
+        else if (CurrentForce <= 0)
+        {
+            CanUseJetpack = true;
         }
     }
 
-    public void useJetPack()
+    private void UseForce()
     {
-        print("jetpack");
+        CurrentForce += Time.deltaTime * FORCE_CONSUMPTION;
+    }
+
+    private void ReloadForce()
+    {
+        CurrentForce -= Time.deltaTime * FORCE_FILLUP;
+
+        if (CurrentForce < 0)
+        {
+            CurrentForce = 0;
+        }
+    }
+
+    private void UseJetPack()
+    {
         currentVector = Vector3.up;
         currentVector += transform.right * Input.GetAxis("Horizontal");
         currentVector += transform.forward * Input.GetAxis("Vertical");
-        CharCont.Move((currentVector * speed * Time.fixedDeltaTime - CharCont.velocity * Time.fixedDeltaTime) * CurrentForce);
+        CharController.Move((currentVector * Speed * Time.fixedDeltaTime - CharController.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
     }
 }
