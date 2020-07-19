@@ -5,35 +5,53 @@ using UnityEngine;
 
 public class PlayerCharacterController : MonoBehaviour
 {
-    public LayerMask GroundLayers;
-    public float JumpForce = 500f;
-    public float DistanceToGround = 1f;
-    public float MoveSpeed = 10f;
-    private Rigidbody rBody; 
+    public float Speed = 10f;
+    public float Gravity = -9.81f; // Default gravity of unity
+    public float JumpHeight = 5f;
+    private CharacterController controller;
+    //private PlayerInput input;
+    private Vector3 velocity;
 
+    public Transform groundCheck;
+    public float groundDistance = 1f; // Equals the height of the player
+    public LayerMask groundMask;
+
+    // Initialize once on start
     void Start()
     {
-        rBody = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
+        //input = GetComponent<PlayerInput>();
     }
 
     void Update()
     {
+        if (IsGrounded() && velocity.y < 0)
+        {
+            velocity.y = -2f;
+        }
+
         float moveX = Input.GetAxis("Horizontal");
-        float moveY = 0f;
         float moveZ = Input.GetAxis("Vertical");
 
-        Vector3 playerMovement = new Vector3(moveX, moveY, moveZ).normalized * Time.deltaTime * MoveSpeed;
-        transform.Translate(playerMovement, Space.Self);
+        Vector3 move = transform.right * moveX + transform.forward * moveZ;
+        controller.Move(move * Speed * Time.deltaTime);
+
+        print("Grounded: " + IsGrounded());
 
         if (Input.GetButtonDown("Jump") && IsGrounded())
         {
-            rBody.AddForce(Vector3.up * JumpForce, ForceMode.Impulse);
+
+            velocity.y = Mathf.Sqrt(JumpHeight * -2f * Gravity);
         }
+        velocity.y += Gravity * Time.deltaTime;
+        controller.Move(velocity * Time.deltaTime);
+
+
     }
 
     private bool IsGrounded()
     {
         Ray rayToGround = new Ray(transform.position, Vector3.down);
-        return Physics.Raycast(rayToGround, DistanceToGround, GroundLayers);
+        return Physics.Raycast(rayToGround, groundDistance, groundMask);
     }
 }
