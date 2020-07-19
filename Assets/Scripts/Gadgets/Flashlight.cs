@@ -5,19 +5,19 @@ using UnityEngine;
 
 public class Flashlight : MonoBehaviour
 {
-    private GameObject light;
+    private GameObject spotlight;
 
     void Start()
     {
-        light = GameObject.Find("Spot Light");
-        light.SetActive(true);
+        spotlight = GameObject.Find("Spot Light");
+        spotlight.SetActive(true);
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            light.SetActive(!light.activeSelf);
+            spotlight.SetActive(!spotlight.activeSelf);
         }
     }
 }
