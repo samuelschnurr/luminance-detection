@@ -1002,9 +1002,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxRadius: 15
   MaxAngle: 45
-  MaxDetection: 45
+  MaxDetectionRadius: 15
+  MaxFollowRadius: 45
 --- !u!54 &552898200
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1273,9 +1273,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxRadius: 15
   MaxAngle: 45
-  MaxDetection: 15
+  MaxDetectionRadius: 15
+  MaxFollowRadius: 45
 --- !u!54 &949785936
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6223,9 +6223,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxRadius: 15
   MaxAngle: 45
-  MaxDetection: 15
+  MaxDetectionRadius: 15
+  MaxFollowRadius: 45
 --- !u!54 &2083923789
 Rigidbody:
   m_ObjectHideFlags: 0
