@@ -40,7 +40,10 @@ public class FollowPlayer : MonoBehaviour
             Gizmos.color = Color.green;
         }
 
-        Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * MaxDetectionRadius);
+        if (player != null)
+        {
+            Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * MaxDetectionRadius);
+        }        
     }
 
     void Start()
