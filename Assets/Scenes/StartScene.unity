@@ -228,6 +228,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1347955717075865898, guid: c90e65b750eb2a847ab217f2d9ca3330,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347955717075865899, guid: c90e65b750eb2a847ab217f2d9ca3330,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5579763731558429030, guid: c90e65b750eb2a847ab217f2d9ca3330,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949750954966929383, guid: c90e65b750eb2a847ab217f2d9ca3330,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c90e65b750eb2a847ab217f2d9ca3330, type: 3}
 --- !u!1 &373333590
@@ -394,7 +414,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh13896
+  m_Name: pb_Mesh16758
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -557,7 +577,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh14006
+  m_Name: pb_Mesh16822
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1535,7 +1555,6 @@ GameObject:
   - component: {fileID: 1111219147}
   - component: {fileID: 1111219146}
   - component: {fileID: 1111219150}
-  - component: {fileID: 1111219151}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1647,18 +1666,6 @@ MonoBehaviour:
   Speed: 10
   Gravity: -9.81
   JumpHeight: 1
---- !u!114 &1111219151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1111219145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100a7c6c69ff2644b9c41cfd8b2bb93d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1401688552
 GameObject:
   m_ObjectHideFlags: 0
