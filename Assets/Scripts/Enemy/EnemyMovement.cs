@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FollowPlayer : MonoBehaviour
+public class EnemyMovement : MonoBehaviour
 {
     public float MaxAngle = 45f;
     public float MaxDetectionRadius = 15f;
