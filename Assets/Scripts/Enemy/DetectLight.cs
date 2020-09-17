@@ -31,23 +31,4 @@ public class DetectLight : MonoBehaviour
 
         Debug.Log(Lightlevel);
     }
-
-    private void HitByLight(Light light)
-    {
-        
-        //Physics.SphereCast(p1, charCtrl.height / 2, transform.forward, out hit, 10))
-
-
-            RaycastHit hit;
-        if (Physics.Raycast(light.transform.position, light.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity))
-        {
-            Debug.DrawRay(light.transform.position, light.transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log("Did Hit");
-        }
-        else
-        {
-            Debug.DrawRay(light.transform.position, light.transform.TransformDirection(Vector3.forward) * 1000, Color.red);
-            Debug.Log("Did not Hit");
-        }
-    }
 }
