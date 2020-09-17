@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Others;
+﻿using Assets.Scripts.Other;
 using UnityEngine;
 using UnityEngine.AI;
 

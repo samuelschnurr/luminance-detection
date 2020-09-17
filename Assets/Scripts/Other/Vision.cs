@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Others
+namespace Assets.Scripts.Other
 {
     /// <summary>
     /// Vision helpers

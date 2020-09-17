@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace Assets.Scripts.Others
+namespace Assets.Scripts.Other
 {
     /// <summary>
     /// Momvement helpers
