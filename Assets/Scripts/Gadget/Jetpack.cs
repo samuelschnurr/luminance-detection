@@ -34,6 +34,7 @@ namespace Assets.Scripts.Gadget
                 ReloadForce();
             }
         }
+
         private void CheckOverheat()
         {
             bool isOverheated = CurrentForce >= MaxForce;
