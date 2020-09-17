@@ -44,7 +44,7 @@ public class FollowPlayer : MonoBehaviour
         if (player != null)
         {
             Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * MaxDetectionRadius);
-        }        
+        }
     }
 
     void Start()
@@ -56,6 +56,13 @@ public class FollowPlayer : MonoBehaviour
 
     void Update()
     {
+        follower.isStopped = lightDetector.IsFreezed;
+
+        if (follower.isStopped)
+        {
+            return;
+        }
+
         isTargetInFieldOfView = Vision.IsInFieldOfView(transform, player.transform, MaxAngle, MaxDetectionRadius);
 
         if (isTargetInFieldOfView)
@@ -65,7 +72,6 @@ public class FollowPlayer : MonoBehaviour
 
         if (isTargetInReminder)
         {
-            follower.isStopped = lightDetector.IsFreezed;
             isTargetInReminder = Movement.FollowTarget(transform, player.transform, follower, MaxFollowRadius);
         }
     }
