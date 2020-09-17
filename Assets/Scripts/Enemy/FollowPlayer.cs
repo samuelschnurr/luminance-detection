@@ -9,6 +9,7 @@ public class FollowPlayer : MonoBehaviour
     public float MaxFollowRadius = 45f;
     private GameObject player;
     private NavMeshAgent follower;
+    private DetectLight lightDetector;
     private bool isTargetInFieldOfView;
     private bool isTargetInReminder;
 
@@ -50,6 +51,7 @@ public class FollowPlayer : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         follower = GetComponent<NavMeshAgent>();
+        lightDetector = GetComponent<DetectLight>();
     }
 
     void Update()
@@ -63,6 +65,7 @@ public class FollowPlayer : MonoBehaviour
 
         if (isTargetInReminder)
         {
+            follower.isStopped = lightDetector.IsFreezed;
             isTargetInReminder = Movement.FollowTarget(transform, player.transform, follower, MaxFollowRadius);
         }
     }

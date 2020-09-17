@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 1347955717075865897}
   - component: {fileID: 1347955717075865895}
   - component: {fileID: 1347955717075865894}
-  - component: {fileID: 1347955717075865893}
+  - component: {fileID: 1186580338330103019}
   - component: {fileID: 1347955717075865892}
   - component: {fileID: 1347955717075865899}
+  - component: {fileID: 6967765745389795747}
   - component: {fileID: 1347955717075865898}
   m_Layer: 8
   m_Name: Enemy
@@ -44,7 +45,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347955717075865896}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!23 &1347955717075865894
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -84,8 +85,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &1347955717075865893
-SphereCollider:
+--- !u!65 &1186580338330103019
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -95,7 +96,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Size: {x: 1.0000002, y: 1, z: 1.0000002}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &1347955717075865892
 Rigidbody:
@@ -128,6 +129,23 @@ MonoBehaviour:
   MaxAngle: 45
   MaxDetectionRadius: 15
   MaxFollowRadius: 45
+--- !u!114 &6967765745389795747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1347955717075865896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 100a7c6c69ff2644b9c41cfd8b2bb93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightCheckTexture: {fileID: 8400000, guid: 15f08a3d7ae268a4db9300d12058676e, type: 2}
+  Lightlevel: 0
+  MaxLightlevel: 6300000
+  Light: 0
+  IsFreezed: 0
 --- !u!195 &1347955717075865898
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -160,7 +178,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7949750954966929383}
   - component: {fileID: 5579763731558429030}
-  - component: {fileID: 1561209528172187528}
   m_Layer: 8
   m_Name: LightCamera
   m_TagString: Untagged
@@ -203,10 +220,10 @@ Camera:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 0.1
+    width: 0.5
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
+  far clip plane: 10
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -225,18 +242,3 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!114 &1561209528172187528
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3735942814650756346}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 100a7c6c69ff2644b9c41cfd8b2bb93d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lightCheckTexture: {fileID: 8400000, guid: 15f08a3d7ae268a4db9300d12058676e, type: 2}
-  Lightlevel: 0
-  Light: 0

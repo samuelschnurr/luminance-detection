@@ -4,7 +4,9 @@ public class DetectLight : MonoBehaviour
 {
     public RenderTexture lightCheckTexture;
     public float Lightlevel;
+    public float MaxLightlevel = 6300000;
     public int Light;
+    public bool IsFreezed;
 
     void Update()
     {
@@ -29,6 +31,7 @@ public class DetectLight : MonoBehaviour
             Lightlevel += (0.2126f * colors[i].r) + (0.7152f * colors[i].g) + (0.0722f + colors[i].b);
         }
 
-        Debug.Log(Lightlevel);
+        IsFreezed = Lightlevel > MaxLightlevel;
+        Debug.Log("IsFreezed: " + (Lightlevel > MaxLightlevel));
     }
 }
