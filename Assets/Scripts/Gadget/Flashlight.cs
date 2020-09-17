@@ -1,23 +1,26 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Flashlight : MonoBehaviour
+namespace Assets.Scripts.Gadget
 {
-    private GameObject spotlight;
-
-    void Start()
+    /// <summary>
+    /// A simple flashlight
+    /// </summary>
+    public class Flashlight : MonoBehaviour
     {
-        spotlight = GameObject.Find("Spot Light");
-        spotlight.SetActive(true);
-    }
+        private GameObject spotlight;
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F))
+        void Start()
         {
-            spotlight.SetActive(!spotlight.activeSelf);
+            spotlight = GameObject.Find("Spot Light");
+            spotlight.SetActive(true);
+        }
+
+        void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                spotlight.SetActive(!spotlight.activeSelf);
+            }
         }
     }
 }

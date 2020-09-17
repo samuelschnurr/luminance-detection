@@ -3,10 +3,18 @@
 namespace Assets.Scripts.Others
 {
     /// <summary>
-    /// Basic vision helpers
+    /// Vision helpers
     /// </summary>
     public class Vision
     {
+        /// <summary>
+        /// Check if the target is in the field of view of the origin
+        /// </summary>
+        /// <param name="origin">The origin object which looks at the target</param>
+        /// <param name="target">The target object which is looked at</param>
+        /// <param name="maxAngle">The max angle the origin can see</param>
+        /// <param name="maxRadius">The maxRadius the origin can see</param>
+        /// <returns>Returns true if the origin can see the target, else false</returns>
         public static bool IsInFieldOfView(Transform origin, Transform target, float maxAngle, float maxRadius)
         {
             // Get all colliders within the radius ob the origin object

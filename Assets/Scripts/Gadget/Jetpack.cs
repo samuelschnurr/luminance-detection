@@ -1,70 +1,74 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class Jetpack : MonoBehaviour
+namespace Assets.Scripts.Gadget
 {
-    private const float FORCE_CONSUMPTION = 10f; // Using jetpack fuel costs factor 10 to the time
-    private const float FORCE_FILLUP = 3f; // Reloading jetpack by factor 2 to the time
-
-    public CharacterController CharController;
-    public float Speed = 3f;
-    public float MaxForce = 15f; // Force you can use
-    public float ForceMultiplier = 0.25f; // Multiplier for the movement force
-    private Vector3 currentVector = Vector3.up;
-    public float CurrentForce = 0f; // Force currently in use
-    private bool CanUseJetpack = true;
-
-    // JetPack is on hold jump button, so FixedUpdate() which may not run every single frame is enough
-    // FixedUpdate runs for each frame when physics calculations happen
-    void FixedUpdate()
+    /// <summary>
+    /// A jetpack which allows you to fly
+    /// </summary>
+    public class Jetpack : MonoBehaviour
     {
-        CheckOverheat();
+        private const float FORCE_CONSUMPTION = 10f; // Using jetpack fuel costs factor 10 to the time
+        private const float FORCE_FILLUP = 3f; // Reloading jetpack by factor 2 to the time
 
-        if (Input.GetKey(KeyCode.Space) && CanUseJetpack)
+        public CharacterController CharController;
+        public float Speed = 3f;
+        public float MaxForce = 15f; // Force you can use
+        public float ForceMultiplier = 0.25f; // Multiplier for the movement force
+        private Vector3 currentVector = Vector3.up;
+        public float CurrentForce = 0f; // Force currently in use
+        private bool CanUseJetpack = true;
+
+        // JetPack is on hold jump button, so FixedUpdate() which may not run every single frame is enough
+        // FixedUpdate runs for each frame when physics calculations happen
+        void FixedUpdate()
         {
-            UseForce();
-            UseJetPack();
+            CheckOverheat();
+
+            if (Input.GetKey(KeyCode.Space) && CanUseJetpack)
+            {
+                UseForce();
+                UseJetPack();
+            }
+            else
+            {
+                ReloadForce();
+            }
         }
-        else
+        private void CheckOverheat()
         {
-            ReloadForce();
-        }
-    }
-    private void CheckOverheat()
-    {
-        bool isOverheated = CurrentForce >= MaxForce;
+            bool isOverheated = CurrentForce >= MaxForce;
 
-        if (isOverheated)
+            if (isOverheated)
+            {
+                CanUseJetpack = false;
+            }
+            else if (CurrentForce <= 0)
+            {
+                CanUseJetpack = true;
+            }
+        }
+
+        private void UseForce()
         {
-            CanUseJetpack = false;
+            CurrentForce += Time.deltaTime * FORCE_CONSUMPTION;
         }
-        else if (CurrentForce <= 0)
+
+        private void ReloadForce()
         {
-            CanUseJetpack = true;
+            CurrentForce -= Time.deltaTime * FORCE_FILLUP;
+
+            if (CurrentForce < 0)
+            {
+                CurrentForce = 0;
+            }
         }
-    }
 
-    private void UseForce()
-    {
-        CurrentForce += Time.deltaTime * FORCE_CONSUMPTION;
-    }
-
-    private void ReloadForce()
-    {
-        CurrentForce -= Time.deltaTime * FORCE_FILLUP;
-
-        if (CurrentForce < 0)
+        private void UseJetPack()
         {
-            CurrentForce = 0;
+            currentVector = Vector3.up;
+            currentVector += transform.right * Input.GetAxis("Horizontal");
+            currentVector += transform.forward * Input.GetAxis("Vertical");
+            CharController.Move((currentVector * Speed * Time.fixedDeltaTime - CharController.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
         }
-    }
-
-    private void UseJetPack()
-    {
-        currentVector = Vector3.up;
-        currentVector += transform.right * Input.GetAxis("Horizontal");
-        currentVector += transform.forward * Input.GetAxis("Vertical");
-        CharController.Move((currentVector * Speed * Time.fixedDeltaTime - CharController.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
     }
 }

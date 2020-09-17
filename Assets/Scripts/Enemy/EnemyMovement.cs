@@ -2,77 +2,83 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class EnemyMovement : MonoBehaviour
+namespace Assets.Scripts.Enemy
 {
-    public float MaxAngle = 45f;
-    public float MaxDetectionRadius = 15f;
-    public float MaxFollowRadius = 45f;
-    private GameObject player;
-    private NavMeshAgent follower;
-    private DetectLight lightDetector;
-    private bool isTargetInFieldOfView;
-    private bool isTargetInReminder;
-
-    private void OnDrawGizmos()
+    /// <summary>
+    /// Enemy movement behaviour
+    /// </summary>
+    public class EnemyMovement : MonoBehaviour
     {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, MaxDetectionRadius);
+        public float MaxAngle = 45f;
+        public float MaxDetectionRadius = 15f;
+        public float MaxFollowRadius = 45f;
+        private GameObject player;
+        private NavMeshAgent follower;
+        private DetectLight lightDetector;
+        private bool isTargetInFieldOfView;
+        private bool isTargetInReminder;
 
-        if (isTargetInReminder)
+        private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(transform.position, MaxFollowRadius);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(transform.position, MaxDetectionRadius);
+
+            if (isTargetInReminder)
+            {
+                Gizmos.DrawWireSphere(transform.position, MaxFollowRadius);
+            }
+
+            Gizmos.color = Color.blue;
+            Vector3 leftAngle = Quaternion.AngleAxis(-MaxAngle, transform.up) * transform.forward * MaxDetectionRadius;
+            Vector3 rightAngle = Quaternion.AngleAxis(MaxAngle, transform.up) * transform.forward * MaxDetectionRadius;
+            Gizmos.DrawRay(transform.position, leftAngle);
+            Gizmos.DrawRay(transform.position, rightAngle);
+
+            Gizmos.color = Color.black;
+            Gizmos.DrawRay(transform.position, transform.forward * MaxDetectionRadius);
+
+            if (isTargetInFieldOfView)
+            {
+                Gizmos.color = Color.red;
+            }
+            else
+            {
+                Gizmos.color = Color.green;
+            }
+
+            if (player != null)
+            {
+                Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * MaxDetectionRadius);
+            }
         }
 
-        Gizmos.color = Color.blue;
-        Vector3 leftAngle = Quaternion.AngleAxis(-MaxAngle, transform.up) * transform.forward * MaxDetectionRadius;
-        Vector3 rightAngle = Quaternion.AngleAxis(MaxAngle, transform.up) * transform.forward * MaxDetectionRadius;
-        Gizmos.DrawRay(transform.position, leftAngle);
-        Gizmos.DrawRay(transform.position, rightAngle);
-
-        Gizmos.color = Color.black;
-        Gizmos.DrawRay(transform.position, transform.forward * MaxDetectionRadius);
-
-        if (isTargetInFieldOfView)
+        void Start()
         {
-            Gizmos.color = Color.red;
-        }
-        else
-        {
-            Gizmos.color = Color.green;
+            player = GameObject.FindWithTag("Player");
+            follower = GetComponent<NavMeshAgent>();
+            lightDetector = GetComponent<DetectLight>();
         }
 
-        if (player != null)
+        void Update()
         {
-            Gizmos.DrawRay(transform.position, (player.transform.position - transform.position).normalized * MaxDetectionRadius);
-        }
-    }
+            follower.isStopped = lightDetector.IsFreezed;
 
-    void Start()
-    {
-        player = GameObject.FindWithTag("Player");
-        follower = GetComponent<NavMeshAgent>();
-        lightDetector = GetComponent<DetectLight>();
-    }
+            if (follower.isStopped)
+            {
+                return;
+            }
 
-    void Update()
-    {
-        follower.isStopped = lightDetector.IsFreezed;
+            isTargetInFieldOfView = Vision.IsInFieldOfView(transform, player.transform, MaxAngle, MaxDetectionRadius);
 
-        if (follower.isStopped)
-        {
-            return;
-        }
+            if (isTargetInFieldOfView)
+            {
+                isTargetInReminder = true;
+            }
 
-        isTargetInFieldOfView = Vision.IsInFieldOfView(transform, player.transform, MaxAngle, MaxDetectionRadius);
-
-        if (isTargetInFieldOfView)
-        {
-            isTargetInReminder = true;
-        }
-
-        if (isTargetInReminder)
-        {
-            isTargetInReminder = Movement.FollowTarget(transform, player.transform, follower, MaxFollowRadius);
+            if (isTargetInReminder)
+            {
+                isTargetInReminder = Movement.FollowTarget(transform, player.transform, follower, MaxFollowRadius);
+            }
         }
     }
 }
