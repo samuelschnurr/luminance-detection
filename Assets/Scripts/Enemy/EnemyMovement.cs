@@ -10,7 +10,7 @@ namespace Assets.Scripts.Enemy
     public class EnemyMovement : MonoBehaviour
     {
         public float MaxFollowRadius = 45f;
-        public float MaxLightLevel = 6300000;        
+        public float MaxLightLevel = 6300000f;
         private GameObject target;
         private NavMeshAgent follower;
         private EnemyCamera followerCamera;

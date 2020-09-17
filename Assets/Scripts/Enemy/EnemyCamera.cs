@@ -14,9 +14,6 @@ namespace Assets.Scripts.Enemy
         private GameObject player;
 
         public RenderTexture lightCheckTexture;
-        public float Lightlevel;
-        public int Light;
-        public bool IsFreezed;
 
         private void OnDrawGizmos()
         {
@@ -57,6 +54,10 @@ namespace Assets.Scripts.Enemy
             IsTargetInFieldOfView = Vision.IsInFieldOfView(transform, player.transform, MaxDetectionAngle, MaxDetectionRadius);
         }
 
+        /// <summary>
+        /// Calculates the luminance of a texture
+        /// </summary>
+        /// <returns>Returns a float which indicates the luminance</returns>
         public float GetLuminance()
         {
             RenderTexture tempTexture = RenderTexture.GetTemporary(lightCheckTexture.width, lightCheckTexture.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Linear);
@@ -73,14 +74,15 @@ namespace Assets.Scripts.Enemy
 
             Color32[] colors = temp2DTexture.GetPixels32();
 
-            Lightlevel = 0;
+            // Calculate the luminance by the brightness of pixels by a mathematic function: https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color
+            float luminance = 0f;
 
             for (int i = 0; i < colors.Length; i++)
             {
-                Lightlevel += (0.2126f * colors[i].r) + (0.7152f * colors[i].g) + (0.0722f + colors[i].b);
+                luminance += (0.2126f * colors[i].r) + (0.7152f * colors[i].g) + (0.0722f + colors[i].b);
             }
 
-            return Lightlevel;
+            return luminance;
         }
     }
 }
