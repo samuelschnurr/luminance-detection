@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1347955717075865892}
   - component: {fileID: 1347955717075865899}
   - component: {fileID: 6967765745389795747}
-  - component: {fileID: 1347955717075865898}
+  - component: {fileID: 8309232423309047754}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -126,9 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8368a579945c0d44afd1ca75ca0749d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxAngle: 45
-  MaxDetectionRadius: 15
   MaxFollowRadius: 45
+  MaxLightLevel: 6300000
 --- !u!114 &6967765745389795747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,12 +140,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 100a7c6c69ff2644b9c41cfd8b2bb93d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MaxDetectionAngle: 45
+  MaxDetectionRadius: 15
+  IsTargetInFieldOfView: 0
   lightCheckTexture: {fileID: 8400000, guid: 15f08a3d7ae268a4db9300d12058676e, type: 2}
-  Lightlevel: 0
-  MaxLightlevel: 6300000
-  Light: 0
-  IsFreezed: 0
---- !u!195 &1347955717075865898
+--- !u!195 &8309232423309047754
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -155,7 +153,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 1347955717075865896}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.5000001
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
