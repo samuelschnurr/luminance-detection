@@ -15,11 +15,20 @@ namespace Assets.Scripts.Gadget
         public float MaxForce = 15f; // Force you can use
         public float ForceMultiplier = 0.25f; // Multiplier for the movement force
         private Vector3 currentVector = Vector3.up;
-        public float CurrentForce = 0f; // Force currently in use
         private bool CanUseJetpack = true;
+        private float CurrentForce = 0f; // Force currently in use        
+        private float moveX;
+        private float moveZ;
 
-        // JetPack is on hold jump button, so FixedUpdate() which may not run every single frame is enough
-        // FixedUpdate runs for each frame when physics calculations happen
+        // Use Update() to get the user input per each frame
+        void Update()
+        {
+            moveX = Input.GetAxis("Horizontal");
+            moveZ = Input.GetAxis("Vertical");
+        }
+
+        // FixedUpdate() runs for each frame when physics calculations happen
+        // Execute movement when physics happen with input of the last frame
         void FixedUpdate()
         {
             CheckOverheat();
@@ -67,8 +76,8 @@ namespace Assets.Scripts.Gadget
         private void UseJetPack()
         {
             currentVector = Vector3.up;
-            currentVector += transform.right * Input.GetAxis("Horizontal");
-            currentVector += transform.forward * Input.GetAxis("Vertical");
+            currentVector += transform.right * moveX;
+            currentVector += transform.forward * moveZ;
             CharController.Move((currentVector * Speed * Time.fixedDeltaTime - CharController.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
         }
     }

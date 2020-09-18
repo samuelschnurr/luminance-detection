@@ -26,12 +26,18 @@ namespace Assets.Scripts.Player
             controller = GetComponent<CharacterController>();
         }
 
-        // Get Player Input for each frame
+        // Use Update() to get the user input per each frame
         void Update()
         {
             moveX = Input.GetAxis("Horizontal");
             moveZ = Input.GetAxis("Vertical");
             jump = Input.GetButtonDown("Jump");
+        }
+
+        // FixedUpdate() runs for each frame when physics calculations happen
+        // Execute movement when physics happen with input of the last frame
+        void FixedUpdate()
+        {
             isGrounded = IsGrounded();
 
             if (isGrounded && velocity.y < 0)
@@ -39,8 +45,7 @@ namespace Assets.Scripts.Player
                 velocity.y = -2f;
             }
 
-            Vector3 move = transform.right * moveX +
-                           transform.forward * moveZ;
+            Vector3 move = transform.right * moveX + transform.forward * moveZ;
             controller.Move(move * Speed * Time.deltaTime);
 
             if (jump && isGrounded)

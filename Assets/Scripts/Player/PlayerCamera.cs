@@ -20,12 +20,11 @@ namespace Assets.Scripts.Player
             player = GameObject.FindWithTag("Player");
         }
 
-        void Update()
+        void FixedUpdate()
         {
             mouseX += Input.GetAxis("Mouse X") * RotationSpeed;
             mouseY -= Input.GetAxis("Mouse Y") * RotationSpeed;
             mouseY = Mathf.Clamp(mouseY, Y_ANGLE_MIN, Y_ANGLE_MAX);
-
             transform.rotation = Quaternion.Euler(mouseY, mouseX, 0);
             player.transform.rotation = Quaternion.Euler(0, mouseX, 0);
         }
