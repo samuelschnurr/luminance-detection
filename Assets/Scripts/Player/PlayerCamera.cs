@@ -5,7 +5,6 @@ namespace Assets.Scripts.Player
     /// <summary>
     /// Player camera behaviour
     /// </summary>
-    [RequireComponent(typeof(PlayerInput))]
     public class PlayerCamera : MonoBehaviour
     {
         public float RotationSpeed = 1f;
@@ -20,7 +19,7 @@ namespace Assets.Scripts.Player
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             player = GameObject.FindWithTag("Player");
-            playerInput = GetComponent<PlayerInput>();
+            playerInput = GetComponentInParent<PlayerInput>();
         }
 
         void Update()
