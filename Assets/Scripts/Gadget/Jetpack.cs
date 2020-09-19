@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Player;
+using UnityEngine;
 
 namespace Assets.Scripts.Gadget
 {
@@ -10,15 +11,22 @@ namespace Assets.Scripts.Gadget
         private const float FORCE_CONSUMPTION = 10f; // Using jetpack fuel costs factor 10 to the time
         private const float FORCE_FILLUP = 3f; // Reloading jetpack by factor 2 to the time
 
-        public CharacterController CharController;
         public float Speed = 3f;
         public float MaxForce = 15f; // Force you can use
         public float ForceMultiplier = 0.25f; // Multiplier for the movement force
+        private CharacterController controller;
+        private PlayerInput playerInput;
         private Vector3 currentVector = Vector3.up;
         private bool CanUseJetpack = true;
         private float CurrentForce = 0f; // Force currently in use        
         private float moveX;
         private float moveZ;
+
+        void Start()
+        {
+            playerInput = GetComponentInParent<PlayerInput>();
+            controller = GetComponentInParent<CharacterController>();
+        }
 
         // Use Update() to get the user input per each frame
         void Update()
@@ -78,7 +86,7 @@ namespace Assets.Scripts.Gadget
             currentVector = Vector3.up;
             currentVector += transform.right * moveX;
             currentVector += transform.forward * moveZ;
-            CharController.Move((currentVector * Speed * Time.fixedDeltaTime - CharController.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
+            controller.Move((currentVector * Speed * Time.fixedDeltaTime - controller.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
         }
     }
 }

@@ -6,7 +6,6 @@ namespace Assets.Scripts.Gadget
     /// <summary>
     /// A simple flashlight
     /// </summary>
-    [RequireComponent(typeof(PlayerInput))]
     public class Flashlight : MonoBehaviour
     {
         private PlayerInput playerInput;
@@ -14,7 +13,7 @@ namespace Assets.Scripts.Gadget
 
         void Start()
         {
-            playerInput = GetComponent<PlayerInput>();
+            playerInput = GetComponentInParent<PlayerInput>();
             spotlight = GameObject.Find("Spot Light");
             spotlight.SetActive(true);
         }

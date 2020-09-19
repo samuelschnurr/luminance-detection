@@ -315,7 +315,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34784
+  m_Name: pb_Mesh13898
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -478,7 +478,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh34868
+  m_Name: pb_Mesh13982
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1228,6 +1228,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194229}
+  - component: {fileID: 963194226}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1235,6 +1236,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &963194226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6ce95388c77754a868b93f8b0f577e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!20 &963194227
 Camera:
   m_ObjectHideFlags: 0
@@ -1350,11 +1363,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7dd93eb7a6e15f45bb7217deb3d038c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CharController: {fileID: 1111219146}
   Speed: 3
   MaxForce: 15
   ForceMultiplier: 0.25
-  CurrentForce: 0
 --- !u!1 &1064383076
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1458,7 @@ GameObject:
   - component: {fileID: 1111219147}
   - component: {fileID: 1111219146}
   - component: {fileID: 1111219150}
+  - component: {fileID: 1111219151}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1550,7 +1562,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78850798af18c974d8e6e3be4adc37dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GroundCheck: {fileID: 0}
   GroundMask:
     serializedVersion: 2
     m_Bits: 1
@@ -1558,6 +1569,18 @@ MonoBehaviour:
   Speed: 10
   Gravity: -9.81
   JumpHeight: 1
+--- !u!114 &1111219151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111219145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6ce95388c77754a868b93f8b0f577e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1160095173
 GameObject:
   m_ObjectHideFlags: 0
@@ -4505,6 +4528,7 @@ GameObject:
   - component: {fileID: 1526761754}
   - component: {fileID: 1526761753}
   - component: {fileID: 1526761755}
+  - component: {fileID: 1526761752}
   m_Layer: 0
   m_Name: Flash Light
   m_TagString: Untagged
@@ -4527,6 +4551,18 @@ Transform:
   m_Father: {fileID: 1111219149}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1526761752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1526761750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b6ce95388c77754a868b93f8b0f577e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!23 &1526761753
 MeshRenderer:
   m_ObjectHideFlags: 0
