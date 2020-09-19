@@ -5,7 +5,7 @@ namespace Assets.Scripts.Other
     /// <summary>
     /// Vision helpers
     /// </summary>
-    public class Vision
+    public static class Vision
     {
         /// <summary>
         /// Check if the target is in the field of view of the origin
@@ -51,6 +51,26 @@ namespace Assets.Scripts.Other
                         }
                     }
                 }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Check if the target is distance for the origin
+        /// </summary>
+        /// <param name="origin">The origin object which wants to reach the target</param>
+        /// <param name="target">The target object which should be reached</param>
+        /// <param name="maxRadius">The maxRadius the origin can keep in mind</param>
+        /// <returns>Returns true if the target is within the max radius of the origin, else false</returns>
+        public static bool IsTargetInDistance(Transform origin, Transform target, float maxRadius)
+        {
+            float distance = Vector3.Distance(origin.position, target.position);
+
+            // Target is in distance
+            if (distance <= maxRadius)
+            {
+                return true;
             }
 
             return false;

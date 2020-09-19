@@ -8,9 +8,13 @@ namespace Assets.Scripts.Enemy
     /// </summary>
     public class EnemyCamera : MonoBehaviour
     {
-        public float MaxDetectionAngle = 45f;
+        public float MaxVisionAngle = 45f;
         public float MaxDetectionRadius = 15f;
-        public bool IsTargetInFieldOfView;
+        public float MaxReminderRadius = 45f;
+        public float MaxLightLevel = 6300000f;
+        public bool IsTargetInReminder { get; private set; }
+        public bool IsFreezed { get; private set; }
+
         private GameObject player;
 
         public RenderTexture lightCheckTexture;
@@ -20,16 +24,21 @@ namespace Assets.Scripts.Enemy
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, MaxDetectionRadius);
 
+            if (IsTargetInReminder)
+            {
+                Gizmos.DrawWireSphere(transform.position, MaxReminderRadius);
+            }
+
             Gizmos.color = Color.blue;
-            Vector3 leftAngle = Quaternion.AngleAxis(-MaxDetectionAngle, transform.up) * transform.forward * MaxDetectionRadius;
-            Vector3 rightAngle = Quaternion.AngleAxis(MaxDetectionAngle, transform.up) * transform.forward * MaxDetectionRadius;
+            Vector3 leftAngle = Quaternion.AngleAxis(-MaxVisionAngle, transform.up) * transform.forward * MaxDetectionRadius;
+            Vector3 rightAngle = Quaternion.AngleAxis(MaxVisionAngle, transform.up) * transform.forward * MaxDetectionRadius;
             Gizmos.DrawRay(transform.position, leftAngle);
             Gizmos.DrawRay(transform.position, rightAngle);
 
             Gizmos.color = Color.black;
             Gizmos.DrawRay(transform.position, transform.forward * MaxDetectionRadius);
 
-            if (IsTargetInFieldOfView)
+            if (IsTargetInReminder)
             {
                 Gizmos.color = Color.red;
             }
@@ -51,14 +60,11 @@ namespace Assets.Scripts.Enemy
 
         void Update()
         {
-            IsTargetInFieldOfView = Vision.IsInFieldOfView(transform, player.transform, MaxDetectionAngle, MaxDetectionRadius);
+            CheckIsEnemyFreezed();
+            CheckIsTargetInReminder();            
         }
 
-        /// <summary>
-        /// Calculates the luminance of a texture
-        /// </summary>
-        /// <returns>Returns a float which indicates the luminance</returns>
-        public float GetLuminance()
+        private float GetLuminance()
         {
             RenderTexture tempTexture = RenderTexture.GetTemporary(lightCheckTexture.width, lightCheckTexture.height, 0, RenderTextureFormat.Default, RenderTextureReadWrite.Linear);
             Graphics.Blit(lightCheckTexture, tempTexture);
@@ -83,6 +89,25 @@ namespace Assets.Scripts.Enemy
             }
 
             return luminance;
+        }
+
+        private void CheckIsEnemyFreezed()
+        {
+            IsFreezed = GetLuminance() >= MaxLightLevel;
+        }
+
+        private void CheckIsTargetInReminder()
+        {
+            if (Vision.IsInFieldOfView(transform, player.transform, MaxVisionAngle, MaxDetectionRadius))
+            {
+                // Focus to target is received
+                IsTargetInReminder = true;
+            }
+            else if (!Vision.IsTargetInDistance(transform, player.transform, MaxReminderRadius))
+            {
+                // Focus to target is lost
+                IsTargetInReminder = false;
+            }
         }
     }
 }

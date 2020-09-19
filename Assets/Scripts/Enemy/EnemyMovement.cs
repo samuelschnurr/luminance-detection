@@ -11,21 +11,10 @@ namespace Assets.Scripts.Enemy
     [RequireComponent(typeof(EnemyCamera))]
     public class EnemyMovement : MonoBehaviour
     {
-        public float MaxFollowRadius = 45f;
-        public float MaxLightLevel = 6300000f;
         private GameObject target;
         private NavMeshAgent follower;
         private EnemyCamera followerCamera;
-        private bool isTargetInReminder;
-
-        private void OnDrawGizmos()
-        {
-            if (isTargetInReminder)
-            {
-                Gizmos.color = Color.yellow;
-                Gizmos.DrawWireSphere(transform.position, MaxFollowRadius);
-            }
-        }
+        private bool canFollowTarget;
 
         void Start()
         {
@@ -36,22 +25,36 @@ namespace Assets.Scripts.Enemy
 
         void Update()
         {
-            follower.isStopped = followerCamera.GetLuminance() > MaxLightLevel;
+            if (CanFollowTarget())
+            {
+                canFollowTarget = true;
+            }
+        }
+
+        void FixedUpdate()
+        {
+            if (canFollowTarget)
+            {
+                canFollowTarget = false;
+                Movement.FollowTarget(transform, target.transform, follower);
+            }
+        }
+
+        private bool CanFollowTarget()
+        {
+            follower.isStopped = followerCamera.IsFreezed;
 
             if (follower.isStopped)
             {
-                return;
+                return false;
             }
 
-            if (followerCamera.IsTargetInFieldOfView)
+            if (!followerCamera.IsTargetInReminder)
             {
-                isTargetInReminder = true;
+                return false;
             }
 
-            if (isTargetInReminder)
-            {
-                isTargetInReminder = Movement.FollowTarget(transform, target.transform, follower, MaxFollowRadius);
-            }
+            return true;
         }
     }
 }

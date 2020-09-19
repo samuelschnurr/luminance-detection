@@ -6,7 +6,7 @@ namespace Assets.Scripts.Other
     /// <summary>
     /// Momvement helpers
     /// </summary>
-    public class Movement
+    public static class Movement
     {
         /// <summary>
         /// Follows a target
@@ -14,22 +14,11 @@ namespace Assets.Scripts.Other
         /// <param name="origin">The origin object</param>
         /// <param name="target">The target to follow</param>
         /// <param name="navMeshAgent">The AI navMeshAgent</param>
-        /// <param name="maxRadius">The maximum radius until the origin stops to follow the target</param>
-        /// <returns>Return true if the origin is following the target, else false</returns>
-        public static bool FollowTarget(Transform origin, Transform target, NavMeshAgent navMeshAgent, float maxRadius)
+        public static void FollowTarget(Transform origin, Transform target, NavMeshAgent navMeshAgent)
         {
-            float distance = Vector3.Distance(origin.position, target.position);
-
-            // Target is in distance
-            if (distance <= maxRadius)
-            {
-                Vector3 directionToTarget = origin.position - target.position;
-                Vector3 newPosition = origin.position - directionToTarget;
-                navMeshAgent.SetDestination(newPosition);
-                return true;
-            }
-
-            return false;
+            Vector3 directionToTarget = origin.position - target.position;
+            Vector3 newPosition = origin.position - directionToTarget;
+            navMeshAgent.SetDestination(newPosition);
         }
     }
 }
