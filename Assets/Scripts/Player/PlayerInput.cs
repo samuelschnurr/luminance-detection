@@ -12,6 +12,7 @@ namespace Assets.Scripts.Player
         public float MouseX { get; private set; }
         public float MouseY { get; private set; }
         public bool Jump { get; private set; }
+        public bool JumpHold { get; private set; }
         public bool FlashLight { get; set; }
 
         // Use Update() to get the user input per each frame
@@ -23,6 +24,7 @@ namespace Assets.Scripts.Player
             MouseX = Input.GetAxis("Mouse X");
             MouseY = Input.GetAxis("Mouse Y");
             Jump = Input.GetButtonDown("Jump");
+            JumpHold = Input.GetKey(KeyCode.Space);
 
             if (Input.GetKeyDown(KeyCode.F))
             {

@@ -19,20 +19,11 @@ namespace Assets.Scripts.Gadget
         private Vector3 currentVector = Vector3.up;
         private bool CanUseJetpack = true;
         private float CurrentForce = 0f; // Force currently in use        
-        private float moveX;
-        private float moveZ;
 
         void Start()
         {
             playerInput = GetComponentInParent<PlayerInput>();
             controller = GetComponentInParent<CharacterController>();
-        }
-
-        // Use Update() to get the user input per each frame
-        void Update()
-        {
-            moveX = Input.GetAxis("Horizontal");
-            moveZ = Input.GetAxis("Vertical");
         }
 
         // FixedUpdate() runs for each frame when physics calculations happen
@@ -41,7 +32,7 @@ namespace Assets.Scripts.Gadget
         {
             CheckOverheat();
 
-            if (Input.GetKey(KeyCode.Space) && CanUseJetpack)
+            if (playerInput.JumpHold && CanUseJetpack)
             {
                 UseForce();
                 UseJetPack();
@@ -84,8 +75,8 @@ namespace Assets.Scripts.Gadget
         private void UseJetPack()
         {
             currentVector = Vector3.up;
-            currentVector += transform.right * moveX;
-            currentVector += transform.forward * moveZ;
+            currentVector += transform.right * playerInput.MoveX;
+            currentVector += transform.forward * playerInput.MoveZ;
             controller.Move((currentVector * Speed * Time.fixedDeltaTime - controller.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
         }
     }
