@@ -17,8 +17,9 @@ namespace Assets.Scripts.Gadget
         private CharacterController controller;
         private PlayerInput playerInput;
         private Vector3 currentVector = Vector3.up;
-        private bool CanUseJetpack = true;
-        private float CurrentForce = 0f; // Force currently in use        
+        private bool isForceRemaining = true;
+        private bool isJetpackUsable = true;
+        private float currentForce = 0f; // Force currently in use        
 
         void Start()
         {
@@ -26,58 +27,75 @@ namespace Assets.Scripts.Gadget
             controller = GetComponentInParent<CharacterController>();
         }
 
-        // FixedUpdate() runs for each frame when physics calculations happen
-        // Execute movement when physics happen with input of the last frame
-        void FixedUpdate()
+        void Update()
         {
-            CheckOverheat();
+            CheckForceRemaining();
 
-            if (playerInput.JumpHold && CanUseJetpack)
+            if (playerInput.JumpHold && isForceRemaining)
             {
+                isJetpackUsable = true;
+                currentVector = CalculateJetpackMovement();
                 UseForce();
-                UseJetPack();
             }
             else
             {
+                isJetpackUsable = false;
                 ReloadForce();
             }
         }
 
-        private void CheckOverheat()
+        // FixedUpdate() runs for each frame when physics calculations happen
+        // Execute movement when physics happen with input of the last frame
+        void FixedUpdate()
         {
-            bool isOverheated = CurrentForce >= MaxForce;
-
-            if (isOverheated)
+            if (isJetpackUsable)
             {
-                CanUseJetpack = false;
+                UseJetPack();
             }
-            else if (CurrentForce <= 0)
+        }
+
+        private void CheckForceRemaining()
+        {
+            bool forceEmpty = currentForce >= MaxForce;
+
+            if (forceEmpty)
             {
-                CanUseJetpack = true;
+                // Jetpack is overheated
+                isForceRemaining = false;
+            }
+            else if (currentForce <= 0)
+            {
+                // Jetpack is cooled down
+                isForceRemaining = true;
             }
         }
 
         private void UseForce()
         {
-            CurrentForce += Time.deltaTime * FORCE_CONSUMPTION;
+            currentForce += Time.deltaTime * FORCE_CONSUMPTION;
         }
 
         private void ReloadForce()
         {
-            CurrentForce -= Time.deltaTime * FORCE_FILLUP;
+            currentForce -= Time.deltaTime * FORCE_FILLUP;
 
-            if (CurrentForce < 0)
+            if (currentForce < 0)
             {
-                CurrentForce = 0;
+                currentForce = 0;
             }
         }
 
-        private void UseJetPack()
+        private Vector3 CalculateJetpackMovement()
         {
             currentVector = Vector3.up;
             currentVector += transform.right * playerInput.MoveX;
             currentVector += transform.forward * playerInput.MoveZ;
-            controller.Move((currentVector * Speed * Time.fixedDeltaTime - controller.velocity * Time.fixedDeltaTime) * CurrentForce * ForceMultiplier);
+            return currentVector;
+        }
+
+        private void UseJetPack()
+        {
+            controller.Move((currentVector * Speed * Time.fixedDeltaTime - controller.velocity * Time.fixedDeltaTime) * currentForce * ForceMultiplier);
         }
     }
 }
