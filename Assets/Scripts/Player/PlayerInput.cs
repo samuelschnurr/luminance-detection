@@ -12,6 +12,7 @@ namespace Assets.Scripts.Player
         public float MouseX { get; private set; }
         public float MouseY { get; private set; }
         public bool Jump { get; private set; }
+        public bool FlashLight { get; set; }
 
         // Use Update() to get the user input per each frame
         // Player input will not be get lost on slow/fast frame rates
@@ -21,7 +22,12 @@ namespace Assets.Scripts.Player
             MoveZ = Input.GetAxis("Vertical");
             MouseX = Input.GetAxis("Mouse X");
             MouseY = Input.GetAxis("Mouse Y");
-            Jump = Input.GetButtonDown("Jump");            
+            Jump = Input.GetButtonDown("Jump");
+
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                FlashLight = true;
+            }
         }
     }
 }
