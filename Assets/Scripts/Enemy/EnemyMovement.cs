@@ -7,6 +7,8 @@ namespace Assets.Scripts.Enemy
     /// <summary>
     /// Enemy movement behaviour
     /// </summary>
+    [RequireComponent(typeof(NavMeshAgent))]
+    [RequireComponent(typeof(EnemyCamera))]
     public class EnemyMovement : MonoBehaviour
     {
         public float MaxFollowRadius = 45f;
