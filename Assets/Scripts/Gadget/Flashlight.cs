@@ -21,6 +21,11 @@ namespace Assets.Scripts.Gadget
 
         void Update()
         {
+            ToggleFlashlight();
+        }
+
+        private void ToggleFlashlight()
+        {
             if (playerInput.FlashLight)
             {
                 playerInput.FlashLight = false;
