@@ -9,7 +9,6 @@ namespace Assets.Scripts.Player
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerMovement : MonoBehaviour
     {
-        public Transform GroundCheck;
         public LayerMask GroundMask;
         public float GroundDistance = 1f; // Equals the height of the player
         public float Speed = 10f;
