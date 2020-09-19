@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.Player
 {
     /// <summary>
     /// Player movement behaviour
     /// </summary>
+    [RequireComponent(typeof(NavMeshObstacle))]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(PlayerInput))]
     public class PlayerMovement : MonoBehaviour
     {
         public LayerMask GroundMask;
+        public NavMeshObstacle NavMeshObstacle;
         public float GroundDistance = 1f; // Equals the height of the player
         public float Speed = 10f;
         public float Gravity = -9.81f; // Default gravity of unity
@@ -21,6 +24,7 @@ namespace Assets.Scripts.Player
         // Initialize once on start
         void Start()
         {
+            NavMeshObstacle = GetComponent<NavMeshObstacle>();
             controller = GetComponent<CharacterController>();
             playerInput = GetComponent<PlayerInput>();
         }

@@ -106,7 +106,7 @@ NavMeshSettings:
   m_BuildSettings:
     serializedVersion: 2
     agentTypeID: 0
-    agentRadius: 0.5
+    agentRadius: 1.5
     agentHeight: 2
     agentSlope: 45
     agentClimb: 0.4
@@ -114,7 +114,7 @@ NavMeshSettings:
     maxJumpAcrossDistance: 0
     minRegionArea: 2
     manualCellSize: 0
-    cellSize: 0.16666667
+    cellSize: 0.5
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 1
@@ -1459,6 +1459,7 @@ GameObject:
   - component: {fileID: 1111219146}
   - component: {fileID: 1111219150}
   - component: {fileID: 1111219151}
+  - component: {fileID: 1111219152}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1565,6 +1566,7 @@ MonoBehaviour:
   GroundMask:
     serializedVersion: 2
     m_Bits: 257
+  NavMeshObstacle: {fileID: 0}
   GroundDistance: 1
   Speed: 10
   Gravity: -9.81
@@ -1581,6 +1583,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b6ce95388c77754a868b93f8b0f577e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!208 &1111219152
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111219145}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.75, y: 0.5, z: 0.75}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1160095173
 GameObject:
   m_ObjectHideFlags: 0

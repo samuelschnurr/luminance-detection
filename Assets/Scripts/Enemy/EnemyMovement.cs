@@ -43,7 +43,7 @@ namespace Assets.Scripts.Enemy
         private bool CanFollowTarget()
         {
             follower.isStopped = followerCamera.IsFreezed;
-
+            
             if (follower.isStopped)
             {
                 return false;
