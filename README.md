@@ -12,7 +12,7 @@ This repository provides a prototypical implementation of a luminance detector i
 - Luminance detection
 
 ## Before you start
-- Install a compatible version of Unity (this repository is developed with <a href="https://unity3d.com/unity/qa/lts-releases?version=2019.4">Unity 2019.4.x</a>
+- Install a compatible version of Unity (this repository is developed with <a href="https://unity3d.com/unity/qa/lts-releases?version=2019.4">Unity 2019.4.x</a>)
 - Notice that you may show Gizmos to easilier understand enemy behaviour
 
 ## Demonstration
