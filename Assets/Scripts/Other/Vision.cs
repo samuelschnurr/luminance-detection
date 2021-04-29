@@ -17,7 +17,7 @@ namespace Assets.Scripts.Other
         /// <returns>Returns true if the origin can see the target, else false</returns>
         public static bool IsInFieldOfView(Transform origin, Transform target, float maxAngle, float maxRadius)
         {
-            // Get all colliders within the radius ob the origin object
+            // Get all collider within the radius ob the origin object
             Collider[] overlaps = Physics.OverlapSphere(origin.position, maxRadius);
 
             foreach (Collider overlap in overlaps)

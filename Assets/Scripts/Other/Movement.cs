@@ -4,7 +4,7 @@ using UnityEngine.AI;
 namespace Assets.Scripts.Other
 {
     /// <summary>
-    /// Momvement helpers
+    /// Movement helpers
     /// </summary>
     public static class Movement
     {

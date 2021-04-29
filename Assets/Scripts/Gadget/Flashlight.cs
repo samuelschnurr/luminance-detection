@@ -50,7 +50,6 @@ namespace Assets.Scripts.Gadget
                 navMeshObstacle.center = new Vector3(0, 0, 0);
                 navMeshObstacle.size = new Vector3(1.5f, 1, 1.5f);
             }
-            
         }
     }
 }

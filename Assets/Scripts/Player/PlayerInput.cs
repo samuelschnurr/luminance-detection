@@ -3,7 +3,7 @@
 namespace Assets.Scripts.Player
 {
     /// <summary>
-    /// Basi class for player input
+    /// Basic class for player input
     /// </summary>
     public class PlayerInput : MonoBehaviour
     {

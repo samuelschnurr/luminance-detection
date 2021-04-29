@@ -61,7 +61,7 @@ namespace Assets.Scripts.Enemy
         void Update()
         {
             CheckIsEnemyFreezed();
-            CheckIsTargetInReminder();            
+            CheckIsTargetInReminder();
         }
 
         private float GetLuminance()
@@ -80,7 +80,7 @@ namespace Assets.Scripts.Enemy
 
             Color32[] colors = temp2DTexture.GetPixels32();
 
-            // Calculate the luminance by the brightness of pixels by a mathematic function: https://stackoverflow.com/questions/596216/formula-to-determine-brightness-of-rgb-color
+            // Calculate the luminance by the brightness of pixels by a mathematical function: https://en.wikipedia.org/wiki/Luma_(video)
             float luminance = 0f;
 
             for (int i = 0; i < colors.Length; i++)
