@@ -19,7 +19,7 @@ This repository provides a prototypical implementation of a luminance detector i
 
 ### Jetpack
 
-Regular jumps are executed by pressing `KeyCode.Space` once. Using the jetpack is executed at double jumps or when the player is holding `KeyCode.Space`.
+Regular jumps are executed by pressing `KeyCode.Space` once. Using the jetpack is executed at double jumps if the player is holding `KeyCode.Space`.
 
 The jetpack has a limited amount of fuel (`Force`). However, it will automatically charge if the jetpack is not in use. If the fuel drops to 0 during the flight, the jetpack `isOverheated`. In this case, the jetpack can no longer be used until it is fully charged and the player `isGrounded`.
 
