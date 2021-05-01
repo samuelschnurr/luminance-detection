@@ -7,7 +7,7 @@ This repository provides a prototypical implementation of a luminance detector i
 - Enemy handling
     - Vision, navMesh movement
     - Detecting, following and forgetting the player 
-- Jetpack with limited but reloading fuel
+- Jetpack with limited but charging fuel
 - Flashlight to put luminance on elements
 - Luminance detection
 
@@ -19,9 +19,17 @@ This repository provides a prototypical implementation of a luminance detector i
 
 ### Jetpack
 
+Regular jumps are executed by pressing `KeyCode.Space` once. Using the jetpack is executed at double jumps or when the player is holding `KeyCode.Space`.
+
+The jetpack has a limited amount of fuel (`Force`). However, it will automatically charge if the jetpack is not in use. If the fuel drops to 0 during the flight, the jetpack `isOverheated`. In this case, the jetpack can no longer be used until it is fully charged and the player `isGrounded`.
+
+Using the jetpack may help you to get out of the field of view of an enemy faster.
+
 <img alt="Gif which shows the player using the jetpack" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Jetpack.gif" width="30%" height="30%" />
 
 ### Flashlight
+
+The flashlight is toggled via `KeyCode.F`. It is used to increase the amount of light to an enemy and thus freeze it.
 
 <img alt="Gif which shows the player toggling the flashlight" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Flashlight.gif" width="30%" height="30%" />
 
