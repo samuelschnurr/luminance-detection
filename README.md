@@ -19,13 +19,19 @@ This repository provides a prototypical implementation of a luminance detector i
 
 ### Jetpack
 
+<img alt="Gif which shows the player using the jetpack" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Jetpack.gif" width="30%" height="30%" />
+
 ### Flashlight
+
+<img alt="Gif which shows the player toggling the flashlight" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Flashlight.gif" width="30%" height="30%" />
 
 ### Enemy behaviour
 
-https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Enemy.gif?raw=true
+<img alt="Gif of an enemy chasing the player" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Enemy.gif" width="30%" height="30%" />
 
 ### Luminance detection
+
+<img alt="Gif of an enemy which is freezed because of luminance" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Luminance.gif" width="30%" height="30%" />
 
 ## License
 
