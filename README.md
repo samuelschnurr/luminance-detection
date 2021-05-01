@@ -1,6 +1,6 @@
 # Luminance Detection in Unity3D
 
-This repository provides a prototypical implementation of a luminance detector in Unity3D and is used for evaluation and as a showcase. The main functionalities are listed below. A detailed description can be found in the chapter Demonstration <a href="https://github.com/samuelschnurr/luminance-detection#Demonstration">Demonstration</a>.
+This repository provides a prototypical implementation of a luminance detector in Unity3D and is used for evaluation and as a showcase. The main functionalities are listed below. A detailed description can be found in the chapter <a href="https://github.com/samuelschnurr/luminance-detection#Demonstration">Demonstration</a>.
 
 - Player handling
     - Input, camera, movement
@@ -16,6 +16,16 @@ This repository provides a prototypical implementation of a luminance detector i
 - Notice that you may show Gizmos to easilier understand enemy behaviour
 
 ## Demonstration
+
+### Jetpack
+
+### Flashlight
+
+### Enemy behaviour
+
+https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Enemy.gif?raw=true
+
+### Luminance detection
 
 ## License
 
