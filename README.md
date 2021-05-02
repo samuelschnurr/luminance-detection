@@ -35,9 +35,27 @@ The flashlight is toggled via `KeyCode.F`. It is used to increase the amount of 
 
 ### Enemy behaviour
 
+With gizmos you can easily understand the behavior of the opponents.
+
+The enemy has a `MaxDetectionRadius` within he can become aware of the player (inner yellow line). 
+
+The player's pursuit is started as soon as he has entered the opponent's `MaxVisionAngle` inside the `MaxDetectionRadius` (blue lines). 
+
+The enemy will follow the player until he leaves its `MaxReminderRadius` (outer yellow line). When the pursuit is abandoned, the `MaxReminderRadius` is disabled and the player can approach the enemy again up to the `MaxDetectionRadius`.
+
 <img alt="Gif of an enemy chasing the player" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Enemy.gif" width="30%" height="30%" />
 
 ### Luminance detection
+
+In the graphic below you can see the enemy is illuminated by the `Flashlight`. The amount of light emitted to him has exceeded the `MaxLightLevel`. He `IsFreezed` and can't move.
+
+Gradually, the player moves the `Flashlight` away from the enemy. The amount of light is reduced. Although some of the light of the falls on the enemy, the `MaxLightLevel` has been undercut. He is not `IsFreezed` and can move again.
+
+With the MaxLightLevel limit, it is important to note that all light sources are taken into account. This results in a different total amount of light if, for example, the enemy is in the shadow and is not hit by the `Directional Light`.
+
+The total amount of light on the enemy is calculated using a `DetectLightTexture`. In collaboration with the `EnemyCamera`, it measures all incoming light sources. For this purpose, the <a href="https://en.wikipedia.org/wiki/Luma_(video)">relative luminance</a> is calculated using the pixels captured by the `EnemyCamera` using the following formula:
+
+`Y = 0.2126R + 0.7152G + 0.0722B`
 
 <img alt="Gif of an enemy which is freezed because of luminance" src="https://github.com/samuelschnurr/luminance-detection/blob/master/Docs/Luminance.gif" width="30%" height="30%" />
 
