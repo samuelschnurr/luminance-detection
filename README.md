@@ -49,9 +49,9 @@ The enemy will follow the player until he leaves its `MaxReminderRadius` (outer 
 
 In the graphic below you can see the enemy is illuminated by the flashlight. The amount of light emitted to him has exceeded the `MaxLightLevel`. He `IsFreezed` and can't move.
 
-Gradually, the player moves the flashlight away from the enemy. The amount of light is reduced. Although some of the light of the falls on the enemy, the `MaxLightLevel` has been undercut. He is not `IsFreezed` and can move again.
+Gradually, the player moves the flashlight away from the enemy. The amount of light is reduced. Although some of the light falls on the enemy, the `MaxLightLevel` has been undercut. He is not `IsFreezed` and can move again.
 
-With the MaxLightLevel limit, it is important to note that all light sources are taken into account. This results in a different total amount of light if, for example, the enemy is in the shadow and is not hit by the directional light.
+With the `MaxLightLevel`, it is important to note that all light sources are taken into account. This results in a different total amount of light if, for example, the enemy is in the shadow and is not hit by the directional light.
 
 The total amount of light on the enemy is calculated using a `DetectLightTexture`. In collaboration with the `EnemyCamera`, it measures all incoming light sources. For this purpose, the <a href="https://en.wikipedia.org/wiki/Luma_(video)">relative luminance</a> is calculated using the pixels captured by the `EnemyCamera` using the following formula:
 
