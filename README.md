@@ -1,6 +1,10 @@
 # Luminance Detection in Unity3D
 
-This repository provides a prototypical implementation of a luminance detector in Unity3D and is used for evaluation and as a showcase. The main functionalities are listed below. A detailed description can be found in the chapter <a href="https://github.com/samuelschnurr/luminance-detection#Demonstration">Demonstration</a>.
+This repository provides a prototypical implementation of a luminance detector in Unity3D and is used for evaluation and as a showcase.
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/V7V3WX3OK)
+
+The main functionalities are listed below. A detailed description can be found in the chapter <a href="https://github.com/samuelschnurr/luminance-detection#Demonstration">Demonstration</a>.
 
 - Player handling
     - Input, camera, movement
